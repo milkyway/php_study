@@ -6,6 +6,10 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <style type="text/css">
 <!--
+body {
+    background-color: #FFFAFA;
+}
+
 input {
     height: 25px;
 }
