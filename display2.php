@@ -1,45 +1,48 @@
 <?php
+session_start();
+$_SESSION['vallidation'] = array();
 
 $name  = $_POST['name'];
 $sex   = $_POST['sex'];
 $mail  = $_POST['mail'];
 $phone = $_POST['phone'];
 
-$error_message = array();
-
 // Name
 if (! empty ( $name ) ) {
     if ( mb_strlen ( $name, 'UTF-8') > 15) {
-        $error_message['name'][] = "15文字以内で入力してください";
+        $_SESSION['vallidation']['name']['message'][] = "15文字以内で入力してください";
     }
 }
 else {
-    $error_message['name'][] = "必須項目です";
+    $_SESSION['vallidation']['name']['message'][] = "必須項目です";
 }
+$_SESSION['vallidation']['name']['org'] = $name;
 
 // Mail
 if (! empty ( $mail ) ) {
     if (! preg_match("/^[-.\w\/]+@[-._[:lower:]\d]+\.[[:lower:]]{2,4}$/", $mail)) {
-        $error_message['mail'][] = "フォーマットを確認してください";
+        $_SESSION['vallidation']['mail']['message'][] = "フォーマットを確認してください";
     }
 }
 else {
-    $error_message['mail'][] = "必須項目です";
+    $_SESSION['vallidation']['mail']['message'][] = "必須項目です";
 }
+$_SESSION['vallidation']['mail']['org'] = $mail;
 
 // Phone
 if (! empty ( $phone ) ) {
     if (! preg_match("/^0\d{1,4}[-(]?\d{1,4}[-)]?\d{3,4}$/", $phone)) {
-        $error_message['phone'][] = "フォーマットを確認してください";
+        $_SESSION['vallidation']['phone']['message'][] = "フォーマットを確認してください";
     }
 }
 else {
-    $error_message['phone'][] = "必須項目です";
+    $_SESSION['vallidation']['phone']['message'][] = "必須項目です";
 }
+$_SESSION['vallidation']['phone']['org'] = $phone;
 
 
-if ( $error_message['name'] || $error_message['mail'] || $error_message['phone'] ) {
-    include ('./form2.php');
+if ( $_SESSION['vallidation']['name']['message'] || $_SESSION['vallidation']['mail']['message'] || $_SESSION['vallidation']['phone']['message'] ) {
+    header('Location: ./form2.php');
     exit;
 }
 else {

@@ -1,3 +1,6 @@
+<?php                                                                                                                                                   
+session_start();
+?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,9 +42,9 @@ p.firstMessage {
             <a href="./form2.php"><h1>Vallidation</h1></a>
         </div>
 <?
-if ($_GET['is_success']) {
+if ( $_GET['is_success'] ) {
     echo '<div class="alert-message success">';
-    echo "<p>正常に処理されました</p>";
+    echo "<p>正常に処理が終了しました</p>";
     echo '</div>';
 }
 ?>
@@ -53,10 +56,10 @@ if ($_GET['is_success']) {
             <tr>
                 <td>Name</td>
                 <td>
-                    <input type="text" name="name">
+                    <input type="text" name="name" value="<?php echo ($_SESSION['vallidation']['name']['org']); ?>">
 <?
-if ( isset ($error_message['name']) ) {
-    foreach ( $error_message['name'] as $str ) {
+if ( isset ($_SESSION['vallidation']['name']['message']) ) {
+    foreach ( $_SESSION['vallidation']['name']['message'] as $str ) {
         echo '<div class="alert-message error">';
         echo "<p>$str</p>";
         echo '</div>';
@@ -77,10 +80,10 @@ if ( isset ($error_message['name']) ) {
             <tr>
                 <td>Mail</td>
                 <td>
-                    <input type="text" name="mail">
+                    <input type="text" name="mail" value="<?php echo ($_SESSION['vallidation']['mail']['org']); ?>">
 <?
-if ( isset ($error_message['mail']) ) {
-    foreach ( $error_message['mail'] as $str ) {
+if ( isset ($_SESSION['vallidation']['mail']['message']) ) {
+    foreach ( $_SESSION['vallidation']['mail']['message'] as $str ) {
         echo '<div class="alert-message error">';
         echo "<p>$str</p>";
         echo '</div>';
@@ -92,10 +95,10 @@ if ( isset ($error_message['mail']) ) {
             <tr>
                 <td>Phone</td>
                 <td>
-                    <input type="text" name="phone">
+                    <input type="text" name="phone" value="<?php echo ($_SESSION['vallidation']['phone']['org']); ?>">
 <?
-if ( isset ($error_message['phone']) ) {
-    foreach ( $error_message['phone'] as $str ) {
+if ( isset ($_SESSION['vallidation']['phone']['message']) ) {
+    foreach ( $_SESSION['vallidation']['phone']['message'] as $str ) {
         echo '<div class="alert-message error">';
         echo "<p>$str</p>";
         echo '</div>';
@@ -113,3 +116,7 @@ if ( isset ($error_message['phone']) ) {
     </div>
 </body>
 </html>
+<?php
+$_SESSION['vallidation'] = array();
+session_destroy();
+?>
