@@ -18,6 +18,9 @@ else {
 }
 $_SESSION['vallidation']['name']['org'] = $name;
 
+// Sex
+$_SESSION['vallidation']['sex']['org'] = $sex;
+
 // Mail
 if (! empty ( $mail ) ) {
     if (! preg_match("/^[-.\w\/]+@[-._[:lower:]\d]+\.[[:lower:]]{2,4}$/", $mail)) {

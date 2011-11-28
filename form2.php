@@ -69,11 +69,11 @@ if ( isset ($_SESSION['vallidation']['name']['message']) ) {
                 </td>
             </tr>
             <tr>
-                <td>Sex</td>
+                <td>Sex <? var_dump($_SESSION['vallidation']['sex']['org']);?></td>
                 <td>
                     <select name="sex">
-                        <option checked>male</option>
-                        <option>female</option>
+                        <option <?php if ($_SESSION['vallidation']['sex']['org'] === 'male') {echo ('selected');} ?>>male</option>
+                        <option <?php if ($_SESSION['vallidation']['sex']['org'] === 'female') {echo ('selected');} ?>>female</option>
                     </select>
                 </td>
             </tr>
