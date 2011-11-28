@@ -1,6 +1,4 @@
-<?php                                                                                                                                                   
-session_start();
-?>
+<?php session_start(); ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -69,7 +67,7 @@ if ( isset ($_SESSION['vallidation']['name']['message']) ) {
                 </td>
             </tr>
             <tr>
-                <td>Sex <? var_dump($_SESSION['vallidation']['sex']['org']);?></td>
+                <td>Sex</td>
                 <td>
                     <select name="sex">
                         <option <?php if ($_SESSION['vallidation']['sex']['org'] === 'male') {echo ('selected');} ?>>male</option>
